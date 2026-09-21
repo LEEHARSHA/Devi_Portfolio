@@ -3,7 +3,7 @@ import { projects } from '../data/projects'
 import ProjectCard from './ProjectCard'
 import ProjectModal from './ProjectModal'
 
-const filters = ['ALL', 'AI', 'WEB', 'SOFTWARE', 'ENGINEERING']
+const filters = ['ALL', 'AI', 'HEALTH', 'FITNESS']
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('ALL')
@@ -14,10 +14,20 @@ const Projects = () => {
 
     if (activeFilter === 'ALL') return projects
 
-    return projects.filter((project) =>
-      project.category?.toUpperCase() === activeFilter ||
-      (project.technologies || []).some((tech) => tech.toUpperCase() === activeFilter),
-    )
+    return projects.filter((project) => {
+      const categoryValue = project.category?.toUpperCase() || ''
+      const projectTitle = project.title?.toUpperCase() || ''
+
+      if (activeFilter === 'HEALTH') {
+        return categoryValue.includes('HEALTH') || projectTitle.includes('SEHAT')
+      }
+
+      if (activeFilter === 'FITNESS') {
+        return projectTitle.includes('FITNESS')
+      }
+
+      return categoryValue.includes(activeFilter) || projectTitle.includes(activeFilter)
+    })
   }, [activeFilter])
 
   return (
@@ -26,14 +36,10 @@ const Projects = () => {
         <div className="section-heading">
           <p className="eyebrow">Projects</p>
           <h2>Things I&apos;ve Built</h2>
-          <p className="section-subtitle">Projects where ideas become working technology.</p>
+          <p className="section-subtitle">Turning ideas into practical technology.</p>
         </div>
 
-        {!projects || !projects.length ? (
-          <div className="empty-state">
-            <p>Projects are being added.</p>
-          </div>
-        ) : (
+        {projects && projects.length ? (
           <>
             <div className="filter-row" aria-label="Project filters">
               {filters.map((filter) => (
@@ -61,6 +67,10 @@ const Projects = () => {
               )}
             </div>
           </>
+        ) : (
+          <div className="empty-state">
+            <p>Projects are being added.</p>
+          </div>
         )}
       </div>
 
