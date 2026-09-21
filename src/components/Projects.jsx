@@ -26,12 +26,12 @@ const Projects = () => {
         <div className="section-heading">
           <p className="eyebrow">Projects</p>
           <h2>Things I&apos;ve Built</h2>
-          <p className="section-subtitle">Projects, experiments, and ideas transformed into technology.</p>
+          <p className="section-subtitle">Projects where ideas become working technology.</p>
         </div>
 
         {!projects || !projects.length ? (
           <div className="empty-state">
-            <p>Projects will be added soon.</p>
+            <p>Projects are being added.</p>
           </div>
         ) : (
           <>

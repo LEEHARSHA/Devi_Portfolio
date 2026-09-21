@@ -21,6 +21,8 @@ const About = () => {
             and transforming ideas into useful solutions.
           </p>
 
+          <a href="#experience" className="button primary about-cta">Explore My Journey →</a>
+
           <div className="info-grid">
             {aboutCards.map((card) => (
               <article key={card.title} className="info-card">

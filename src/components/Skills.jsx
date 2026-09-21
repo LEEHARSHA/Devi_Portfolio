@@ -21,6 +21,7 @@ const Skills = () => {
         <div className="section-heading">
           <p className="eyebrow">Skills</p>
           <h2>Skills</h2>
+          <p className="section-subtitle">Technologies and tools I'm learning and working with.</p>
         </div>
 
         {hasSkills ? (
